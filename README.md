@@ -1,23 +1,17 @@
----
-title: SincNet
-tags:
-- feature-extraction
-- audio
-- arxiv:1808.00158
-license: MIT
-library_name: pytorch
----
 SincNet
 ==============================
 
 SincNet Model for audio feature extraction
 
-Paper: [Speaker Recognition from Raw Waveform with SincNet](https://arxiv.org/abs/1808.00158)
+📄 Paper: [Speaker Recognition from Raw Waveform with SincNet](https://arxiv.org/abs/1808.00158)
+
+🤗 HuggingFace: [D4ve-R/sincnet](https://huggingface.co/D4ve-R/sincnet)
 
 Pure pytorch implementation of the SincNet model for audio feature extraction. The model is implemented in `src/models/sincnet`. Used as a feature extractor for many audio classification task.
 
 Usage
 ------------
+#### from source
 ```bash
 pip install -r requirements.txt
 ```
@@ -28,6 +22,18 @@ from src.models.sincnet import SincNet
 
 # Create a SincNet model
 sincnet = SincNet()
+# Forward pass
+y = sincnet(torch.randn(1, 1, 16000))
+```
+
+#### from huggingface
+```bash
+pip install transformers
+```
+
+```python
+from transformers import AutoModel
+sincnet = AutoModel.from_pretrained("D4ve-R/sincnet")
 # Forward pass
 y = sincnet(torch.randn(1, 1, 16000))
 ```
