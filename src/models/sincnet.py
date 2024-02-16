@@ -46,7 +46,7 @@ class SincNetFilterConvLayer(nn.Module):
         mel = np.linspace(
             2595 * np.log10(1 + low_hz / 700), # Convert Hz to Mel
             2595 * np.log10(1 + high_hz / 700), # Convert Hz to Mel
-            self._out_channels + 1
+            self._out_channels // 2 + 1
         )
         hz = 700 * (10 ** (mel / 2595) - 1) # Convert Mel to Hz
         
@@ -124,20 +124,18 @@ class SincNet(nn.Module):
 
         self.wav_norm1d = nn.InstanceNorm1d(num_wavform_channels, affine=True)
 
-        self.filter = SincNetFilterConvLayer(
-            num_sinc_filters, 
-            sinc_filter_length, 
-            sample_rate=sample_rate, 
-            stride=sinc_filter_stride,
-            padding=sinc_filter_padding,
-            dilation=sinc_filter_dilation,
-            min_low_hz=min_low_hz,
-            min_band_hz=min_band_hz,
-            in_channels=sinc_filter_in_channels,
-        )
-
         self.conv1d = nn.ModuleList([
-            self.filter,
+            SincNetFilterConvLayer(
+                num_sinc_filters, 
+                sinc_filter_length, 
+                sample_rate=sample_rate, 
+                stride=sinc_filter_stride,
+                padding=sinc_filter_padding,
+                dilation=sinc_filter_dilation,
+                min_low_hz=min_low_hz,
+                min_band_hz=min_band_hz,
+                in_channels=sinc_filter_in_channels,
+            ),
             nn.Conv1d(num_sinc_filters, num_conv_filters, conv_filter_length),
             nn.Conv1d(num_conv_filters, num_conv_filters, conv_filter_length),
         ])
