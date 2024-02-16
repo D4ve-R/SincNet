@@ -7,4 +7,4 @@ if __name__ == "__main__":
     model = SincNet()
     waveforms = torch.randn(1, 1, 16000)
     outputs = model(waveforms)
-    print(outputs.shape) # torch.Size([1, 60, 166])
+    print(outputs.shape)

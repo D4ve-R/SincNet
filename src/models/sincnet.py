@@ -8,7 +8,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-logger = logging.get_logger(__name__)
+logger = logging.getLogger(__name__)
 
 class SincNetFilterConvLayer(nn.Module):
     """SincNet fast convolution filter layer"""
