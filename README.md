@@ -1,3 +1,12 @@
+---
+title: SincNet
+tags:
+- feature-extraction
+- audio
+- arxiv:1808.00158
+license: MIT
+library_name: pytorch
+---
 SincNet
 ==============================
 
