@@ -3,6 +3,8 @@ SincNet
 
 SincNet Model for audio feature extraction
 
+Paper: [Speaker Recognition from Raw Waveform with SincNet](https://arxiv.org/abs/1808.00158)
+
 Project Organization
 ------------
 
